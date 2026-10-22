@@ -1,0 +1,217 @@
+/* ===== Contenedor general ===== */
+.pantalla {
+  --color: #ff5a4e;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+  background:
+    radial-gradient(60rem 40rem at 15% -10%, color-mix(in srgb, var(--color) 28%, transparent), transparent 60%),
+    radial-gradient(50rem 35rem at 110% 110%, color-mix(in srgb, var(--color) 18%, transparent), transparent 60%),
+    var(--fondo);
+  transition: background 0.6s ease;
+}
+
+/* ===== Tarjeta ===== */
+.tarjeta {
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem 1.75rem 2.25rem;
+  border-radius: 28px;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px);
+  text-align: center;
+}
+
+.encabezado h1 {
+  margin: 0.4rem 0 1.5rem;
+  font-size: 1.75rem;
+  letter-spacing: -0.03em;
+}
+
+.etiqueta {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--color);
+  transition: color 0.4s;
+}
+
+/* ===== Selector de modo ===== */
+.modos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 4px;
+  border-radius: 14px;
+  background: var(--suave);
+  margin-bottom: 2rem;
+}
+
+.modo {
+  padding: 0.6rem 0.25rem;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--texto-suave);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.modo:hover {
+  color: var(--texto);
+}
+
+.modo--activo {
+  background: var(--color);
+  color: #fff;
+}
+
+.modo--activo:hover {
+  color: #fff;
+}
+
+/* ===== Reloj con anillo ===== */
+.reloj {
+  position: relative;
+  width: min(280px, 100%);
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+.anillo {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.anillo circle {
+  fill: none;
+  stroke-width: 12;
+}
+
+.anillo__fondo {
+  stroke: var(--suave);
+}
+
+.anillo__progreso {
+  stroke: var(--color);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear, stroke 0.4s;
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--color) 60%, transparent));
+}
+
+.reloj__centro {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.tiempo {
+  font-family: var(--mono);
+  font-size: clamp(3rem, 14vw, 4.2rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--texto);
+  font-variant-numeric: tabular-nums;
+}
+
+.estado {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--texto-suave);
+}
+
+.reloj--activo .estado {
+  color: var(--color);
+  animation: latido 2s ease-in-out infinite;
+}
+
+@keyframes latido {
+  50% { opacity: 0.45; }
+}
+
+.mensaje {
+  margin: 1.25rem 0 1.75rem;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+/* ===== Botones ===== */
+.controles {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.boton {
+  flex: 1;
+  max-width: 160px;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  font: inherit;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.3s, opacity 0.3s;
+}
+
+.boton:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.boton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.boton--principal {
+  border: none;
+  background: var(--color);
+  color: #fff;
+  box-shadow: 0 12px 24px -10px var(--color);
+}
+
+.boton--principal:hover:not(:disabled) {
+  box-shadow: 0 16px 30px -10px var(--color);
+}
+
+.boton--secundario {
+  border: 1px solid var(--borde);
+  background: transparent;
+  color: var(--texto);
+}
+
+.boton--secundario:hover:not(:disabled) {
+  background: var(--suave);
+}
+
+/* ===== Pie ===== */
+.pie {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  text-align: center;
+}
+
+.pie code {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--suave);
+  color: var(--texto);
+}
